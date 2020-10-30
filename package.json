@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/GlobalFishingWatch/gfw-api-utils/issues"
   },
-  "homepage": "https://github.com/GlobalFishingWatch/gfw-api-utils#readme"
+  "homepage": "https://github.com/GlobalFishingWatch/gfw-api-utils#readme",
+  "dependencies": {
+    "cls-hooked": "^4.2.2"
+  }
 }
