@@ -13,7 +13,7 @@ Usage:
 ```
 const {
   log,
-} = require('gfw-api-utils').namespaces
+} = require('gfw-api-utils').logger
 ```
 
 
