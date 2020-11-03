@@ -4,13 +4,17 @@ const { TRANSACTION_ID: { NAMESPACE, HEADER, PROPERTY } } = require('../constant
 const koaTransactionIdMiddleware = () => {
     const personalizedRequest = createNamespace(NAMESPACE);
     const middleware = async (ctx, next) => {
-        await new Promise(resolve => {
+        await new Promise((resolve, reject) => {
             personalizedRequest.run(async () => {
-                if (ctx.request.headers[HEADER]) {
-                    personalizedRequest.set(PROPERTY, ctx.request.headers[HEADER]);
+                try {
+                    if (ctx.request.headers[HEADER]) {
+                        personalizedRequest.set(PROPERTY, ctx.request.headers[HEADER]);
+                    }
+                    await next();
+                    resolve();
+                } catch (err) {
+                    reject(err);
                 }
-                await next();
-                resolve();
             });
         });
     };
