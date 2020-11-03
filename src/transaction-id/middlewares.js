@@ -17,8 +17,8 @@ const koaTransactionIdMiddleware = () => {
     return middleware;
 };
 
-const expressTransactionIdMiddleware = (namespace) => {
-    const personalizedRequest = createNamespace(namespace);
+const expressTransactionIdMiddleware = () => {
+    const personalizedRequest = createNamespace(NAMESPACE);
     return (req, res, next) => {
         personalizedRequest.run(() => {
             if (req.headers[HEADER]) {
