@@ -23,15 +23,19 @@ const koaTransactionIdMiddleware = () => {
 
 const expressTransactionIdMiddleware = () => {
     const personalizedRequest = createNamespace(NAMESPACE);
-    return (req, res, next) => {
-        personalizedRequest.run(() => {
-            if (req.headers[HEADER]) {
-                personalizedRequest.set(
-                  PROPERTY,
-                  req.headers[HEADER]
-                );
-            }
-            next();
+    return async (req, res, next) => {
+        await new Promise((resolve, reject) => {
+            personalizedRequest.run(async () => {
+                try {
+                    if (req.headers[HEADER]) {
+                        personalizedRequest.set(PROPERTY, req.headers[HEADER]);
+                    }
+                    await next();
+                    resolve();
+                } catch (err) {
+                    reject(err);
+                }
+            });
         });
     };
 };
