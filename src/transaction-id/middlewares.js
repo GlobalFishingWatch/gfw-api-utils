@@ -2,6 +2,9 @@ const { createNamespace } = require('../namespace');
 const { TRANSACTION_ID: { NAMESPACE, HEADER, PROPERTY } } = require('../constant');
 
 const koaTransactionIdMiddleware = () => {
+    console.log("=======================");
+    console.log("Namespace: " + NAMESPACE);
+    console.log("=======================");
     const personalizedRequest = createNamespace(NAMESPACE);
     const middleware = async (ctx, next) => {
         await new Promise((resolve, reject) => {
@@ -22,6 +25,9 @@ const koaTransactionIdMiddleware = () => {
 };
 
 const expressTransactionIdMiddleware = () => {
+    console.log("=======================");
+    console.log("Namespace: " + NAMESPACE);
+    console.log("=======================");
     const personalizedRequest = createNamespace(NAMESPACE);
     return async (req, res, next) => {
         await new Promise((resolve, reject) => {
