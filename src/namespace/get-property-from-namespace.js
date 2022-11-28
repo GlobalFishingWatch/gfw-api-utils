@@ -11,7 +11,7 @@ const getPropertyFromNamespace = (namespace, property) => {
 };
 
 const getTransactionId = () => {
-  getPropertyFromNamespace(NAMESPACE, PROPERTY);
+  return getPropertyFromNamespace(NAMESPACE, PROPERTY);
 };
 
 module.exports = {
